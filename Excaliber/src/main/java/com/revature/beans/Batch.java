@@ -2,145 +2,251 @@ package com.revature.beans;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
+/**
+ * The type Batch.
+ */
 @Entity
 @Table
 public class Batch {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id; // our primary key 
-	@Column
-	private String batchId; // key from caliber
-	@Column
-	private String batchName;
-	@Column
-	private Date startDate;
-	@Column
-	private Date endDate;
-	@Column
-	private String skill;
-	@Column
-	private String location;
-	//private String type; // always Revature?
-	@Column
-	private int trainerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; // our primary key
+    @Column
+    private String batchId; // key from caliber
+    @Column
+    private String batchName;
+    @Column
+    private Date startDate;
+    @Column
+    private Date endDate;
+    @Column
+    private String skill;
+    @Column
+    private String location;
+    //private String type; // always Revature?
+    @Column
+    private int trainerId;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "batch_week",
-			joinColumns = @JoinColumn(name = "batch_id"),
-			inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
-	private Set<Week> weeks;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "batch_week",
+            joinColumns = @JoinColumn(name = "batch_id"),
+            inverseJoinColumns = @JoinColumn(name = "week_id"))//need column names----------------------
+    private List<Week> weeks;
 
-	public Batch() {
-		id = 0;
-		this.batchId = "";
-		batchName = "";
-		this.startDate = null;
-		this.endDate = null;
-		this.skill = "";
-		this.location = "";
-		trainerId = 0;
-		weeks = null;
-	}
+    /**
+     * Instantiates a new Batch.
+     */
+    public Batch() {
+        id = 0;
+        this.batchId = "";
+        batchName = "";
+        this.startDate = null;
+        this.endDate = null;
+        this.skill = "";
+        this.location = "";
+        trainerId = 0;
+        weeks = null;
+    }
 
 
-	public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
-		this.batchId = batchId;
-		this.batchName = batchName;
+    /**
+     * Instantiates a new Batch.
+     *
+     * @param batchId   the batch id
+     * @param batchName the batch name
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param skill     the skill
+     * @param location  the location
+     */
+    public Batch(String batchId, String batchName, String startDate, String endDate, String skill, String location) {
+        this.batchId = batchId;
+        this.batchName = batchName;
 //		this.startDate = startDate;
 //		this.endDate = endDate;
-		this.skill = skill;
-		this.location = location;
-	}
+        this.skill = skill;
+        this.location = location;
+    }
 
 
-	public Integer getId() {
-		return id;
-	}
+    @Override
+    public String toString() {
+        return "Batch{" +
+                "id=" + id +
+                ", batchId='" + batchId + '\'' +
+                ", batchName='" + batchName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", skill='" + skill + '\'' +
+                ", location='" + location + '\'' +
+                ", trainer=" + trainerId +
+                ", weeks=" + weeks +
+                '}';
+    }
 
-	public void setId(Integer exBatchId) {
-		this.id = exBatchId;
-	}
+    /**
+     * Gets batchName.
+     *
+     * @return Value of batchName.
+     */
+    public String getBatchName() {
+        return batchName;
+    }
 
-	public String getBatchId() {
-		return batchId;
-	}
+    /**
+     * Sets new batchName.
+     *
+     * @param batchName New value of batchName.
+     */
+    public void setBatchName(String batchName) {
+        this.batchName = batchName;
+    }
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
+    /**
+     * Gets location.
+     *
+     * @return Value of location.
+     */
+    public String getLocation() {
+        return location;
+    }
 
-	public String getBatchName() {
-		return batchName;
-	}
+    /**
+     * Sets new location.
+     *
+     * @param location New value of location.
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setBatchName(String batchName) {
-		this.batchName = batchName;
-	}
+    /**
+     * Gets weeks.
+     *
+     * @return Value of weeks.
+     */
+    public List<Week> getWeeks() {
+        return weeks;
+    }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    /**
+     * Sets new weeks.
+     *
+     * @param weeks New value of weeks.
+     */
+    public void setWeeks(List<Week> weeks) {
+        this.weeks = weeks;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    /**
+     * Gets skill.
+     *
+     * @return Value of skill.
+     */
+    public String getSkill() {
+        return skill;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    /**
+     * Sets new skill.
+     *
+     * @param skill New value of skill.
+     */
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    /**
+     * Gets trainerId.
+     *
+     * @return Value of trainerId.
+     */
+    public int getTrainerId() {
+        return trainerId;
+    }
 
-	public String getSkill() {
-		return skill;
-	}
+    /**
+     * Sets new trainerId.
+     *
+     * @param trainerId New value of trainerId.
+     */
+    public void setTrainerId(int trainerId) {
+        this.trainerId = trainerId;
+    }
 
-	public void setSkill(String skill) {
-		this.skill = skill;
-	}
+    /**
+     * Gets endDate.
+     *
+     * @return Value of endDate.
+     */
+    public Date getEndDate() {
+        return endDate;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Sets new endDate.
+     *
+     * @param endDate New value of endDate.
+     */
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Gets id.
+     *
+     * @return Value of id.
+     */
+    public Integer getId() {
+        return id;
+    }
 
-	public int getTrainerId() {
-		return trainerId;
-	}
+    /**
+     * Sets new id.
+     *
+     * @param id New value of id.
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTrainer(int trainer) {
-		this.trainerId = trainer;
-	}
+    /**
+     * Gets startDate.
+     *
+     * @return Value of startDate.
+     */
+    public Date getStartDate() {
+        return startDate;
+    }
 
-	public Set<Week> getWeeks() {
-		return weeks;
-	}
+    /**
+     * Sets new startDate.
+     *
+     * @param startDate New value of startDate.
+     */
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setWeeks(Set<Week> weeks) {
-		this.weeks = weeks;
-	}
+    /**
+     * Gets batchId.
+     *
+     * @return Value of batchId.
+     */
+    public String getBatchId() {
+        return batchId;
+    }
 
-	@Override
-	public String toString() {
-		return "Batch{" +
-				"id=" + id +
-				", batchId='" + batchId + '\'' +
-				", batchName='" + batchName + '\'' +
-				", startDate=" + startDate +
-				", endDate=" + endDate +
-				", skill='" + skill + '\'' +
-				", location='" + location + '\'' +
-				", trainer=" + trainerId +
-				", weeks=" + weeks +
-				'}';
-	}
-
+    /**
+     * Sets new batchId.
+     *
+     * @param batchId New value of batchId.
+     */
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
+    }
 }

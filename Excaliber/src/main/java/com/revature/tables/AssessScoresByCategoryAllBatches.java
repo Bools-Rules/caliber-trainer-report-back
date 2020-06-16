@@ -1,71 +1,71 @@
 package com.revature.tables;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import com.revature.beans.BatchAssessment;
+
+/**
+ * The type Assess scores by category all batches.
+ */
 public class AssessScoresByCategoryAllBatches {
-	private List<Double> aScores; //assessment scores for each week
-	private List<String> batchNames; //corresponding batch names
-	private List<String> batchId;
-	private String aType; //type of assessment: test, verbal, project etc.
-	
-	//add dates maybe?
-	//private List<Date> startDates; //corresponding start dates
-	
-	
-	//two constructors
-	public AssessScoresByCategoryAllBatches() {
-		aScores=new ArrayList<Double>();
-		batchNames=new ArrayList<String>();
-		batchId=new ArrayList<String>();
-		aType="";
-	}
-	
+	private String category; //type of assessment: test, verbal, project etc.
+	private List<BatchAssessment> batches; //the list of all of the batches with their assessment scores
+
+    //add dates maybe?
+    //private List<Date> startDates; //corresponding start dates
 
 
-	public AssessScoresByCategoryAllBatches(List<Double> aScores, List<String> batchNames,
-									List<String> batchId,  String aType) 
-	{
-		
-		this.aScores=aScores;
-		this.batchNames=batchNames;
-		this.batchId=batchId;
-		this.aType=aType;
+    /**
+     * Instantiates a new Assess scores by category all batches.
+     */
+//two constructors
+    public AssessScoresByCategoryAllBatches() {
+    	category = "";
+    	batches = new ArrayList<BatchAssessment>();
+    }
+
+
+    /**
+     * Instantiates a new Assess scores by category all batches.
+     *
+     * @param batches	 the batches with scores attached
+     * @param category      the category
+     */
+    public AssessScoresByCategoryAllBatches(List<BatchAssessment> batches, String category) {
+    	this.category = category;
+    	this.batches = batches;
+    }
+
+//Getters and Setters
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets type.
+     *
+     * @param aType the a type
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
+	public List<BatchAssessment> getBatches() {
+		return batches;
 	}
-	
-	//Getters and Setters
-	public List<Double> getaScores() {
-		return aScores;
+
+	public void setBatches(List<BatchAssessment> batches) {
+		this.batches = batches;
 	}
-	public void setaScores(List<Double> aScores) {
-		this.aScores = aScores;
-	}
-	public List<String> getBatchNames() {
-		return batchNames;
-	}
-	public void setBatchNames(List<String> batchNames) {
-		this.batchNames = batchNames;
-	}
-	public List<String> getBatchId() {
-		return batchId;
-	}
-	public void setBatchId(List<String> batchId) {
-		this.batchId = batchId;
-	}
-	public String getaType() {
-		return aType;
-	}
-	public void setaType(String aType) {
-		this.aType = aType;
-	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "AssessScoresByCategoryAllBatches [aScores=" + aScores + ", batchNames=" + batchNames + ", batchId="
-				+ batchId + ", aType=" + aType + "]";
+		return "AssessScoresByCategoryAllBatches [category=" + category + ", batches=" + batches + "]";
 	}
-	
-	
 }

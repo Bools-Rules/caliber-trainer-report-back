@@ -1,116 +1,212 @@
 package com.revature.beans;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
+/**
+ * The type Trainer.
+ */
 @Entity
 @Table
 public class Trainer {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name = "firstname")
-	private String firstName;
-	@Column(name = "lastname")
-	private String lastName;
-	@Column
-	private String email;
-	@Column(name = "employee_Id")
-	private String employeeId; // the trainer's ID from Caliber
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "firstname")
+    private String firstName;
+    @Column(name = "lastname")
+    private String lastName;
+    @Column
+    private String email;
+    @Column(name = "employee_Id")
+    private String employeeId; // the trainer's ID from Caliber
 
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "trainer_batch",
-			joinColumns = @JoinColumn(name = "trainer_id"),
-			inverseJoinColumns = @JoinColumn(name = "batch_id")) //needs column names--------------------------
-	private Set<Batch> batches;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "trainer_batch",
+            joinColumns = @JoinColumn(name = "trainer_id"),
+            inverseJoinColumns = @JoinColumn(name = "batch_id")) //needs column names--------------------------
+    private List<Batch> batches;
 
 
-	public Trainer() {
-		id = 0;
-		this.firstName = "";
-		this.lastName = "";
-		this.email = "";
-		employeeId = "";
-		batches = null;
-	}
+    /**
+     * Instantiates a new Trainer.
+     */
+    public Trainer() {
+        id = -1;
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        employeeId = "";
+        batches = null;
+    }
 
-	public Trainer(String firstName, String lastName, String email) {
-		this.id = 0;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		//this.employeeId = employeeId;
-		//this.batches = batches;
-	}
+    /**
+     * Instantiates a new Trainer.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @param email     the email
+     */
+    public Trainer(String firstName, String lastName, String email) {
+        this.id = -1;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
-	public Integer getTrainerId() {
-		return id;
-	}
+    /**
+     * Instantiates a new Trainer.
+     *
+     * @param trainerId  the trainer id
+     * @param firstName  the first name
+     * @param lastName   the last name
+     * @param email      the email
+     * @param employeeId the employee id
+     * @param batches    the batches
+     */
+    public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, List<Batch> batches) {
+        this.id = trainerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.employeeId = employeeId;
+        this.batches = batches;
+    }
 
-	public void setTrainerId(Integer trainerId) {
-		this.id = trainerId;
-	}
+    /**
+     * Gets email.
+     *
+     * @return Value of email.
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
+    /**
+     * Sets new email.
+     *
+     * @param email New value of email.
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Set<Batch> getBatches() {
-		return batches;
-	}
+    /**
+     * Gets employeeId.
+     *
+     * @return Value of employeeId.
+     */
+    public String getEmployeeId() {
+        return employeeId;
+    }
 
-	public void setBatches(Set<Batch> batches) {
-		this.batches = batches;
-	}
+    /**
+     * Sets new employeeId.
+     *
+     * @param employeeId New value of employeeId.
+     */
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    /**
+     * Gets batches.
+     *
+     * @return Value of batches.
+     */
+    public List<Batch> getBatches() {
+        return batches;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     * Sets new batches.
+     *
+     * @param batches New value of batches.
+     */
+    public void setBatches(List<Batch> batches) {
+        this.batches = batches;
+    }
 
-	public Trainer(Integer trainerId, String firstName, String lastName, String email, String employeeId, Set<Batch> batches) {
-		this.id = trainerId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.employeeId = employeeId;
-		this.batches = batches;
-	}
+    /**
+     * Gets lastName.
+     *
+     * @return Value of lastName.
+     */
+    public String getLastName() {
+        return lastName;
+    }
 
-	@Override
-	public String toString() {
-		return "Trainer{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", employeeId='" + employeeId + '\'' +
-				", batches=" + batches +
-				'}';
-	}
+    /**
+     * Sets new lastName.
+     *
+     * @param lastName New value of lastName.
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Gets firstName.
+     *
+     * @return Value of firstName.
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Sets new firstName.
+     *
+     * @param firstName New value of firstName.
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return Value of id.
+     */
+    public Integer getTrainerId() {
+        return id;
+    }
+
+    /**
+     * Sets new id.
+     *
+     * @param id New value of id.
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", employeeId='" + employeeId + '\'' +
+                ", batches=" + batches +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trainer)) return false;
+        Trainer trainer = (Trainer) o;
+        return firstName.equals(trainer.firstName) &&
+                lastName.equals(trainer.lastName) &&
+                email.equals(trainer.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email);
+    }
 }

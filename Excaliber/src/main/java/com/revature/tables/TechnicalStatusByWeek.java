@@ -1,5 +1,7 @@
 package com.revature.tables;
 
+import java.util.Arrays;
+
 /* Technical Status By Week
 
 User Story:
@@ -15,48 +17,91 @@ Note: Using a Set of TechnicalStatusByWeek objects,
       and display the percentage of each category.
 */
 
+/**
+ * The type Technical status by week.
+ */
 public class TechnicalStatusByWeek {
-	private String batchId;    // ID of the batch
-	private Double percentage; // percentage of technical status in a category
-	private String category;   // the category the percentage represents
-	private String week;       // the week percentage/category refer to
+	private String batchName;         // Name of the batch
+	private Integer goodPercent;      // percentage of good technical status
+	private Integer averagePercent;   // percentage of average technical status
+	private Integer poorPercent;      // percentage of poor technical status
+	private Integer superstarPercent; // percentage of super-star technical status
+	private Integer nullPercent;      // percentage of null technical status
+	private String[] categories;      // the categories the percentages represent
+	private String week;              // the week evaluated
 	
+	/**
+	 * Instantiates a new Technical status by week.
+	 */
 	public TechnicalStatusByWeek() {
-		batchId = null;
-		percentage = null;
-		category = "";
-		week = "";
+		batchName = null;
+		goodPercent = null;
+		averagePercent = null;
+		poorPercent = null;
+		superstarPercent = null;
+		nullPercent = null;
+		categories = null;
+		week = null;
 	}
 
-	public TechnicalStatusByWeek(String batchId, Double percentage, String category, String week) {
-		this.batchId = batchId;
-		this.percentage = percentage;
-		this.category = category;
-		this.week = week;
+	public TechnicalStatusByWeek(String string, double d, String string2, String string3) {
+		// TODO Auto-generated constructor stub
 	}
 
-	public String getBatchId() {
-		return batchId;
+	public String getBatchName() {
+		return batchName;
 	}
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
 	}
 
-	public Double getPercentage() {
-		return percentage;
+	public Integer getGoodPercent() {
+		return goodPercent;
 	}
 
-	public void setPercentage(Double percentage) {
-		this.percentage = percentage;
+	public void setGoodPercent(Integer goodPercent) {
+		this.goodPercent = goodPercent;
 	}
 
-	public String getCategory() {
-		return category;
+	public Integer getAveragePercent() {
+		return averagePercent;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setAveragePercent(Integer averagePercent) {
+		this.averagePercent = averagePercent;
+	}
+
+	public Integer getPoorPercent() {
+		return poorPercent;
+	}
+
+	public void setPoorPercent(Integer poorPercent) {
+		this.poorPercent = poorPercent;
+	}
+
+	public Integer getSuperstarPercent() {
+		return superstarPercent;
+	}
+
+	public void setSuperstarPercent(Integer superstarPercent) {
+		this.superstarPercent = superstarPercent;
+	}
+
+	public Integer getNullPercent() {
+		return nullPercent;
+	}
+
+	public void setNullPercent(Integer nullPercent) {
+		this.nullPercent = nullPercent;
+	}
+
+	public String[] getCategories() {
+		return categories;
+	}
+
+	public void setCategories(String[] categories) {
+		this.categories = categories;
 	}
 
 	public String getWeek() {
@@ -71,9 +116,13 @@ public class TechnicalStatusByWeek {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((percentage == null) ? 0 : percentage.hashCode());
+		result = prime * result + ((averagePercent == null) ? 0 : averagePercent.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
+		result = prime * result + Arrays.hashCode(categories);
+		result = prime * result + ((goodPercent == null) ? 0 : goodPercent.hashCode());
+		result = prime * result + ((nullPercent == null) ? 0 : nullPercent.hashCode());
+		result = prime * result + ((poorPercent == null) ? 0 : poorPercent.hashCode());
+		result = prime * result + ((superstarPercent == null) ? 0 : superstarPercent.hashCode());
 		result = prime * result + ((week == null) ? 0 : week.hashCode());
 		return result;
 	}
@@ -85,20 +134,37 @@ public class TechnicalStatusByWeek {
 		if (!(obj instanceof TechnicalStatusByWeek))
 			return false;
 		TechnicalStatusByWeek other = (TechnicalStatusByWeek) obj;
-		if (batchId == null) {
-			if (other.batchId != null)
+		if (averagePercent == null) {
+			if (other.averagePercent != null)
 				return false;
-		} else if (!batchId.equals(other.batchId))
+		} else if (!averagePercent.equals(other.averagePercent))
 			return false;
-		if (category == null) {
-			if (other.category != null)
+		if (batchName == null) {
+			if (other.batchName != null)
 				return false;
-		} else if (!category.equals(other.category))
+		} else if (!batchName.equals(other.batchName))
 			return false;
-		if (percentage == null) {
-			if (other.percentage != null)
+		if (!Arrays.equals(categories, other.categories))
+			return false;
+		if (goodPercent == null) {
+			if (other.goodPercent != null)
 				return false;
-		} else if (!percentage.equals(other.percentage))
+		} else if (!goodPercent.equals(other.goodPercent))
+			return false;
+		if (nullPercent == null) {
+			if (other.nullPercent != null)
+				return false;
+		} else if (!nullPercent.equals(other.nullPercent))
+			return false;
+		if (poorPercent == null) {
+			if (other.poorPercent != null)
+				return false;
+		} else if (!poorPercent.equals(other.poorPercent))
+			return false;
+		if (superstarPercent == null) {
+			if (other.superstarPercent != null)
+				return false;
+		} else if (!superstarPercent.equals(other.superstarPercent))
 			return false;
 		if (week == null) {
 			if (other.week != null)
@@ -110,8 +176,10 @@ public class TechnicalStatusByWeek {
 
 	@Override
 	public String toString() {
-		return "TechnicalStatusByWeek [batchId=" + batchId + ", percentage=" + percentage + ", category=" + category
-				+ ", week=" + week + "]";
+		return "TechnicalStatusByWeek [batchName=" + batchName + ", goodPercent=" + goodPercent + ", averagePercent="
+				+ averagePercent + ", poorPercent=" + poorPercent + ", superstarPercent=" + superstarPercent
+				+ ", nullPercent=" + nullPercent + ", categories=" + Arrays.toString(categories) + ", week=" + week
+				+ "]";
 	}
 
 }
