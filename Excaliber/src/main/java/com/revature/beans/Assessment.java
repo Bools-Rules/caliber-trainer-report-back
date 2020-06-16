@@ -82,6 +82,6 @@ public class Assessment {
 				", type='" + type + '\'' +
 				", average=" + average +
 				", skillCategory='" + skillCategory + '\'' +
-				"}";
+				'}';
 	}
 }
