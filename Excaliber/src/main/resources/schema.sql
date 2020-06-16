@@ -1,3 +1,5 @@
+-- noinspection SqlDialectInspectionForFile
+
 drop table if exists category CASCADE;
 drop table if exists assessment CASCADE;
 drop table if exists week CASCADE;
